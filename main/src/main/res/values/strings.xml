@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">TakeTheMatch</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="Draw">Draw</string>
+    <string name="restartGame">Restart Game</string>
 
 </resources>

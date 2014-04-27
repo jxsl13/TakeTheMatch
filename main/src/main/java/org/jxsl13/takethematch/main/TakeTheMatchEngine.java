@@ -17,7 +17,7 @@ public class TakeTheMatchEngine {
     private int inverseGameplay;
     private int aiHardness;
 
-    public TakeTheMatchEngine(int MaxMatchesToDraw, int MatchesLimiter, boolean playerStart, boolean InverseGamePlay, int AiHardness) {
+    public TakeTheMatchEngine(int MaxMatchesToDraw, int MatchesLimiter, boolean playerStart, boolean InverseGamePlay, int AiHardness, boolean useRandomizerFactor) {
         gameRuns = true;
         if (MatchesLimiter > 0) {
             matchesLimiter = MatchesLimiter;
@@ -30,10 +30,16 @@ public class TakeTheMatchEngine {
             maxMatchesToDraw = 3;
         }
 
-        while (matches < matchesLimiter / 2) {
-            randomNumber = Math.random();
-            matches = (int) (MatchesLimiter * randomNumber);
+        if (useRandomizerFactor) {
+            while (matches < matchesLimiter / 2) {
+                randomNumber = Math.random();
+                matches = (int) (MatchesLimiter * randomNumber);
+            }
+        } else {
+            randomNumber = 0;
+            matches = MatchesLimiter;
         }
+
         if (AiHardness <= 3 && AiHardness >= 1) {
             aiHardness = AiHardness;
         } else {
@@ -60,7 +66,7 @@ public class TakeTheMatchEngine {
 
     }
 
-    public void RestartGame(int MaxMatchesToDraw, int MatchesLimiter, boolean playerStart, boolean InverseGamePlay, int AiHardness) {
+    public void RestartGame(int MaxMatchesToDraw, int MatchesLimiter, boolean playerStart, boolean InverseGamePlay, int AiHardness, boolean useRandomizerFactor) {
         gameRuns = true;
         if (MatchesLimiter > 0) {
             matchesLimiter = MatchesLimiter;
@@ -73,9 +79,14 @@ public class TakeTheMatchEngine {
             maxMatchesToDraw = 3;
         }
 
-        while (matches < matchesLimiter / 2) {
-            randomNumber = Math.random();
-            matches = (int) (MatchesLimiter * randomNumber);
+        if (useRandomizerFactor) {
+            while (matches < matchesLimiter / 2) {
+                randomNumber = Math.random();
+                matches = (int) (MatchesLimiter * randomNumber);
+            }
+        } else {
+            randomNumber = -1;
+            matches = MatchesLimiter;
         }
         if (AiHardness <= 3 && AiHardness >= 1) {
             aiHardness = AiHardness;
@@ -116,7 +127,6 @@ public class TakeTheMatchEngine {
     }
 
     /**
-     *
      * @param MatchesToDraw
      */
     public void play(int MatchesToDraw) {
@@ -243,6 +253,22 @@ public class TakeTheMatchEngine {
         } else {
             return false;
         }
+    }
+
+
+    public String getDebugginInfo() {
+        return  gameRuns + "\n" +
+                matchesLimiter + "\n" +
+                matches + "\n" +
+                maxMatchesToDraw + "\n" +
+                randomNumber + "\n" +
+                playerMatchesDrawn + "\n" +
+                playerTurn + "\n" +
+                aiPlayerMatchesDrawn + "\n" +
+                aiPlayerTurn + "\n" +
+                invertedStart + "\n" +
+                inverseGameplay + "\n" +
+                aiHardness;
     }
 
 }

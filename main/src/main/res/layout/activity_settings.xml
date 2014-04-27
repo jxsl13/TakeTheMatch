@@ -1,4 +1,163 @@
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"></RelativeLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switchPlayerStarts"
+        android:id="@+id/switchPlayerStarts"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="true"
+        android:layout_marginLeft="@dimen/jxsl13_sixteendp"
+        android:layout_marginRight="@dimen/jxsl13_sixteendp"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:textSize="@dimen/jxsl13_sixteendp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switchInvertedGameplay"
+        android:id="@+id/switchInvertedGameplay"
+        android:checked="false"
+        android:layout_below="@+id/switchPlayerStarts"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/jxsl13_sixteendp"
+        android:layout_alignRight="@+id/switchPlayerStarts"
+        android:layout_alignEnd="@+id/switchPlayerStarts"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:textSize="@dimen/jxsl13_sixteendp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Randomize Factor?"
+        android:id="@+id/switchUseRandomizerFactor"
+        android:layout_below="@+id/switchInvertedGameplay"
+        android:layout_alignLeft="@+id/textViewMatchesLimiter"
+        android:layout_alignStart="@+id/textViewMatchesLimiter"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_alignRight="@+id/switchInvertedGameplay"
+        android:layout_alignEnd="@+id/switchInvertedGameplay"
+        android:checked="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewSettingsLimitMatches"
+        android:id="@+id/textViewMatchesLimiter"
+        android:textSize="@dimen/jxsl13_sixteendp"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_below="@+id/switchUseRandomizerFactor"
+        android:layout_alignLeft="@+id/switchInvertedGameplay"
+        android:layout_alignStart="@+id/switchInvertedGameplay" />
+
+    <EditText
+        android:layout_width="@dimen/jxsl13_hundred"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/editTextSettingsMatchesLimiter"
+        android:layout_below="@+id/switchUseRandomizerFactor"
+        android:layout_alignRight="@+id/switchUseRandomizerFactor"
+        android:layout_alignEnd="@+id/switchUseRandomizerFactor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max Matches To Draw"
+        android:id="@+id/textViewMaxMatchesToDraw"
+        android:layout_below="@+id/editTextSettingsMatchesLimiter"
+        android:layout_alignLeft="@+id/textViewMatchesLimiter"
+        android:layout_alignStart="@+id/textViewMatchesLimiter"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:textSize="@dimen/jxsl13_sixteendp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/editTextSettingsMaxMatchesToDraw"
+        android:layout_below="@+id/editTextSettingsMatchesLimiter"
+        android:layout_alignRight="@+id/editTextSettingsMatchesLimiter"
+        android:layout_alignEnd="@+id/editTextSettingsMatchesLimiter"
+        android:layout_alignLeft="@+id/editTextSettingsMatchesLimiter"
+        android:layout_alignStart="@+id/editTextSettingsMatchesLimiter" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LightGrey"
+        android:id="@+id/view"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_marginLeft="@dimen/jxsl13_sixteendp"
+        android:layout_marginRight="@dimen/jxsl13_sixteendp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switchSettingsShowDebugging"
+        android:id="@+id/switchDebugging"
+        android:textSize="@dimen/jxsl13_sixteendp"
+        android:checked="false"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_below="@+id/view"
+        android:layout_alignRight="@+id/editTextSettingsMaxMatchesToDraw"
+        android:layout_alignEnd="@+id/editTextSettingsMaxMatchesToDraw"
+        android:layout_alignLeft="@+id/view"
+        android:layout_alignStart="@+id/view" />
+
+
+
+        <RadioGroup
+            android:layout_width="246dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroupHardness"
+            android:layout_above="@+id/view"
+            android:layout_alignRight="@+id/editTextSettingsMaxMatchesToDraw"
+            android:layout_alignEnd="@+id/editTextSettingsMaxMatchesToDraw"
+            android:layout_alignLeft="@+id/textViewMaxMatchesToDraw"
+            android:layout_alignStart="@+id/textViewMaxMatchesToDraw"
+            android:layout_marginTop="@dimen/jxsl13_sixteendp">
+
+            <RadioButton
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settingsEasy"
+                android:id="@+id/radioButtonEasy"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_weight="1"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settingsNormal"
+                android:id="@+id/radioButtonNormal"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_weight="1"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settingsHard"
+                android:id="@+id/radioButtonHard"
+                android:checked="false" />
+
+        </RadioGroup>
+
+
+
+</RelativeLayout>

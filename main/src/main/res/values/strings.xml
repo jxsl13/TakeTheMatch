@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="Draw">Draw</string>
     <string name="restartGame">Restart Game</string>
-    <string name="githubLink">TakeTheMatch by jxsl13/</string>
+    <string name="githubLink">TakeTheMatch by jxsl13</string>
     <string name="title_activity_settings">Settings</string>
     <string name="switchPlayerStarts">Player Starts?</string>
     <string name="switchInvertedGameplay">Inverted Gameplay?</string>
@@ -15,5 +15,7 @@
     <string name="settingsHard">Hard</string>
     <string name="settingsNormal">Normal</string>
     <string name="settingsEasy">Easy</string>
+    <string name="settingsTextViewMaxMatchesToDraw">Max Matches To Draw</string>
+    <string name="settingswitchUseRandomizeFactor">Use Randomize Factor?</string>
 
 </resources>

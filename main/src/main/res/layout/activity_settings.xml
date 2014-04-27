@@ -37,7 +37,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Use Randomize Factor?"
+        android:text="@string/settingswitchUseRandomizeFactor"
         android:id="@+id/switchUseRandomizerFactor"
         android:layout_below="@+id/switchInvertedGameplay"
         android:layout_alignLeft="@+id/textViewMatchesLimiter"
@@ -71,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Max Matches To Draw"
+        android:text="@string/settingsTextViewMaxMatchesToDraw"
         android:id="@+id/textViewMaxMatchesToDraw"
         android:layout_below="@+id/editTextSettingsMatchesLimiter"
         android:layout_alignLeft="@+id/textViewMatchesLimiter"

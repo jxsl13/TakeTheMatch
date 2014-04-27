@@ -5,6 +5,11 @@
     
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/actoin_restartGame"
+        android:title="@string/restartGame"
+        android:orderInCategory="1"
         app:showAsAction="never" />
 </menu>

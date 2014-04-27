@@ -1,11 +1,6 @@
 package org.jxsl13.takethematch.main;
 
-import android.annotation.TargetApi;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -42,7 +37,6 @@ public class MainActivity extends ActionBarActivity {
         public void run() {
 
 
-
             if (Game.getMatchesLeft() > 1 || Game.getMatchesLeft() == 0) {
                 textViewMatchesLeft.setText(Game.getMatchesLeft() + " matches left.");
             } else {
@@ -59,15 +53,12 @@ public class MainActivity extends ActionBarActivity {
                 textViewYourOpponentDrew.setText("");
             }
 
-            if(debugging){
+            if (debugging) {
                 textViewDebugging.setText(Game.getDebugginInfo());
                 textViewDebugging.setVisibility(View.VISIBLE);
-            }
-            else{
+            } else {
                 textViewDebugging.setVisibility(View.GONE);
             }
-
-
 
 
         }
@@ -81,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
     boolean playerStarts;
     boolean inversedGameplay;
     byte hardness = 3;
-    boolean debugging ;
+    boolean debugging;
     boolean useRandomizerFactor;
     // Creating game engine
     // settings: maximum matches to draw at once, max matches, playerStart: whether the player or the ai starts, inverse gameplay?, hardness 1~3
@@ -106,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
         Intent getSettingsIntent = getIntent();
 
         maxMatchesToDrawAtOnce = getSettingsIntent.getIntExtra(EXTRA_MAX_MATCHES_TO_DRAW, 3);
-        matchesLimit = getSettingsIntent.getIntExtra(EXTRA_MATCHES_LIMIT,20 );
+        matchesLimit = getSettingsIntent.getIntExtra(EXTRA_MATCHES_LIMIT, 20);
         playerStarts = getSettingsIntent.getBooleanExtra(EXTRA_PLAYER_STARTS, true);
         inversedGameplay = getSettingsIntent.getBooleanExtra(EXTRA_INVERTED_GAMEPLAY, false);
         hardness = (byte) getSettingsIntent.getIntExtra(EXTRA_HARDNESS, 3);
@@ -117,10 +108,12 @@ public class MainActivity extends ActionBarActivity {
         Game = new TakeTheMatchEngine(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
 
 
-        updateGameViews.run();
-
         Toast.makeText(getApplicationContext(), "Game started successfully!", Toast.LENGTH_SHORT).show();
-        // System.out.println("New Game Created Successfully!");
+
+        if (Game.getInvertedStart()) {
+
+            Game.playInverseStart();
+        }
 
         if (!inversedGameplay) {
             if (maxMatchesToDrawAtOnce > 1) {
@@ -132,7 +125,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         } else {
-            if (!inversedGameplay) {
+            if (inversedGameplay) {
                 if (maxMatchesToDrawAtOnce > 1) {
                     textViewDescription.setText("Draw up to " + maxMatchesToDrawAtOnce + " matches at once, but at least 1. The first one to reach 0 matches looses.");
                     // System.out.println("Draw up to " + maxMatchesToDrawAtOnce + " matches at once, but at least 1. The first one to reach 0 matches looses.");
@@ -143,11 +136,7 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         }
-        if (Game.getInvertedStart()) {
-            //System.out.println("Matches: " + Game.getMatchesLeft());
-            Game.playInverseStart();
-            // System.out.println("Your opponent drew: " + Game.getAiPlayerMatchesDrawn());
-        }
+
 
         updateGameViews.run();
 
@@ -159,25 +148,22 @@ public class MainActivity extends ActionBarActivity {
                     Game.play(draw);
 
 
-
-                    updateGameViews.run();
-
-
                     if (!Game.getGameRunStatus()) {
                         if (Game.getPlayerWonTheGame()) {
                             Toast.makeText(getApplicationContext(), "You won!", Toast.LENGTH_LONG).show();
-                            //System.out.println("You won!");
+
                         } else {
                             Toast.makeText(getApplicationContext(), "You lost!", Toast.LENGTH_LONG).show();
-                            // System.out.println("Your opponent won!");
+
                         }
                         buttonRestart.setVisibility(View.VISIBLE);
 
                     }
+                    updateGameViews.run();
 
 
                 } catch (Exception ex) {
-                    // System.out.println("Enter a valid number!");
+
                     Toast.makeText(getApplicationContext(), getString(R.string.errorEnterAValidNumber), Toast.LENGTH_SHORT).show();
                 }
 
@@ -196,39 +182,8 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-        textViewGithubLink.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onClick(View view) {
-                ClipboardManager clipboard;
-                clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("TakeTheMatch by jxsl13", "https://github.com/jxsl13/TakeTheMatch/");
-                clipboard.setPrimaryClip(clip);
-            }
-        });
-
-
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Intent getSettingsIntent = getIntent();
-
-        maxMatchesToDrawAtOnce = getSettingsIntent.getIntExtra(EXTRA_MAX_MATCHES_TO_DRAW, 3);
-        matchesLimit = getSettingsIntent.getIntExtra(EXTRA_MATCHES_LIMIT,20 );
-        playerStarts = getSettingsIntent.getBooleanExtra(EXTRA_PLAYER_STARTS, true);
-        inversedGameplay = getSettingsIntent.getBooleanExtra(EXTRA_INVERTED_GAMEPLAY, false);
-        hardness = (byte) getSettingsIntent.getIntExtra(EXTRA_HARDNESS, 3);
-        debugging = getSettingsIntent.getBooleanExtra(EXTRA_SHOW_DEBUGGING, false);
-        useRandomizerFactor = getSettingsIntent.getBooleanExtra(EXTRA_USE_RANDOMIZER_FACTOR, true);
-
-
-        Game = new TakeTheMatchEngine(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
-
-
-        updateGameViews.run();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -243,20 +198,33 @@ public class MainActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent intentSettings = new Intent(getApplicationContext(), SettingsActivity.class);
-            intentSettings.putExtra(EXTRA_MATCHES_LIMIT, matchesLimit);
-            intentSettings.putExtra(EXTRA_MAX_MATCHES_TO_DRAW, maxMatchesToDrawAtOnce);
-            intentSettings.putExtra(EXTRA_PLAYER_STARTS, playerStarts);
-            intentSettings.putExtra(EXTRA_INVERTED_GAMEPLAY, inversedGameplay);
-            intentSettings.putExtra(EXTRA_HARDNESS, hardness);
-            intentSettings.putExtra(EXTRA_USE_RANDOMIZER_FACTOR, useRandomizerFactor);
-            intentSettings.putExtra(EXTRA_SHOW_DEBUGGING, debugging);
-            startActivity(intentSettings);
-            this.finish();
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(getApplicationContext(), SettingsActivity.class);
+                intentSettings.putExtra(EXTRA_MATCHES_LIMIT, matchesLimit);
+                intentSettings.putExtra(EXTRA_MAX_MATCHES_TO_DRAW, maxMatchesToDrawAtOnce);
+                intentSettings.putExtra(EXTRA_PLAYER_STARTS, playerStarts);
+                intentSettings.putExtra(EXTRA_INVERTED_GAMEPLAY, inversedGameplay);
+                intentSettings.putExtra(EXTRA_HARDNESS, hardness);
+                intentSettings.putExtra(EXTRA_USE_RANDOMIZER_FACTOR, useRandomizerFactor);
+                intentSettings.putExtra(EXTRA_SHOW_DEBUGGING, debugging);
+                startActivity(intentSettings);
+                this.finish();
+
+                return true;
+            case R.id.actoin_restartGame:
+                buttonRestart.callOnClick();
+                // Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
+                //Game.RestartGame(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
+                // updateGameViews.run();
+                // buttonRestart.setVisibility(View.GONE);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 
 }

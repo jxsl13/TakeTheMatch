@@ -17,5 +17,6 @@
     <string name="settingsEasy">Easy</string>
     <string name="settingsTextViewMaxMatchesToDraw">Max Matches To Draw</string>
     <string name="settingswitchUseRandomizeFactor">Use Randomize Factor?</string>
+    <string name="GameStartedSuccessfully">Game started successfully!</string>
 
 </resources>

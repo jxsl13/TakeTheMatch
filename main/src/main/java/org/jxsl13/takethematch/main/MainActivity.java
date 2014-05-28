@@ -108,7 +108,7 @@ public class MainActivity extends ActionBarActivity {
         Game = new TakeTheMatchEngine(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
 
 
-        Toast.makeText(getApplicationContext(), "Game started successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.GameStartedSuccessfully), Toast.LENGTH_SHORT).show();
 
         if (Game.getInvertedStart()) {
 
@@ -214,11 +214,12 @@ public class MainActivity extends ActionBarActivity {
 
                 return true;
             case R.id.actoin_restartGame:
-                buttonRestart.callOnClick();
-                // Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
-                //Game.RestartGame(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
-                // updateGameViews.run();
-                // buttonRestart.setVisibility(View.GONE);
+                //Not working:
+                // Game.RestartGame(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
+                //Working:
+                Game = new TakeTheMatchEngine(maxMatchesToDrawAtOnce, matchesLimit, playerStarts, inversedGameplay, hardness, useRandomizerFactor);
+                updateGameViews.run();
+                buttonRestart.setVisibility(View.GONE);
                 return true;
 
             default:

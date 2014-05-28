@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:visibility="visible">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewMatchesLeft"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textViewYouDrew"
+        android:layout_below="@+id/textViewMatchesLeft"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textViewYourOpponentDrew"
+        android:layout_below="@+id/textViewYouDrew"
+        android:layout_alignLeft="@+id/textViewYouDrew"
+        android:layout_alignStart="@+id/textViewYouDrew"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:gravity="center"
+        android:layout_alignRight="@+id/textViewGithubLink"
+        android:layout_alignEnd="@+id/textViewGithubLink" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textViewDescription"
+        android:layout_below="@+id/textViewYourOpponentDrew"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="@dimen/jxsl13_hundred"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/editTextMatchesToDraw"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignTop="@+id/textViewDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/jxsl13_thirtytwo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Draw"
+        android:id="@+id/buttonDrawMatches"
+        android:onClick="drawMatches"
+        android:layout_below="@+id/editTextMatchesToDraw"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:layout_alignRight="@+id/editTextMatchesToDraw"
+        android:layout_alignEnd="@+id/editTextMatchesToDraw"
+        android:layout_alignLeft="@+id/editTextMatchesToDraw"
+        android:layout_alignStart="@+id/editTextMatchesToDraw" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restartGame"
+        android:id="@+id/buttonRestartGame"
+        android:onClick="restartGame"
+        android:layout_below="@+id/buttonDrawMatches"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/jxsl13_sixteendp"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/githubLink"
+        android:id="@+id/textViewGithubLink"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:layout_marginRight="@dimen/jxsl13_sixteendp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDebugging"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/textViewGithubLink"
+        android:layout_alignTop="@+id/buttonRestartGame"
+        android:layout_marginLeft="@dimen/jxsl13_sixteendp"
+        android:layout_marginBottom="@dimen/jxsl13_sixteendp"
+        android:textColor="@color/DarkRed" />
+</RelativeLayout><!-- From: file:/C:/Users/John/AndroidStudioProjects/TakeTheMatch/main/src/main/res/layout/activity_main.xml -->

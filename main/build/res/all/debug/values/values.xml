@@ -689,6 +689,7 @@
     <!-- From: file:/C:/Users/John/AndroidStudioProjects/TakeTheMatch/main/src/main/res/values/dimens.xml -->
     <eat-comment />
 
+    <dimen name="jxsl13_eight">8dp</dimen>
     <dimen name="jxsl13_fiftysix">56dp</dimen>
     <dimen name="jxsl13_hundred">100dp</dimen>
     <dimen name="jxsl13_sixteendp">16dp</dimen>

@@ -71,12 +71,11 @@
         android:text="@string/Draw"
         android:id="@+id/buttonDrawMatches"
         android:onClick="drawMatches"
-        android:layout_below="@+id/editTextMatchesToDraw"
-        android:layout_marginTop="@dimen/jxsl13_sixteendp"
-        android:layout_alignRight="@+id/editTextMatchesToDraw"
-        android:layout_alignEnd="@+id/editTextMatchesToDraw"
-        android:layout_alignLeft="@+id/editTextMatchesToDraw"
-        android:layout_alignStart="@+id/editTextMatchesToDraw" />
+        android:layout_toLeftOf="@+id/editTextMatchesToDraw"
+        android:layout_alignLeft="@+id/textViewDebugging"
+        android:layout_alignStart="@+id/textViewDebugging"
+        android:layout_alignTop="@+id/textViewDebugging"
+        android:layout_alignBottom="@+id/editTextMatchesToDraw" />
 
     <Button
         android:layout_width="wrap_content"
@@ -84,10 +83,10 @@
         android:text="@string/restartGame"
         android:id="@+id/buttonRestartGame"
         android:onClick="restartGame"
-        android:layout_below="@+id/buttonDrawMatches"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/jxsl13_sixteendp"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_toRightOf="@+id/editTextMatchesToDraw"
+        android:layout_alignBottom="@+id/editTextMatchesToDraw"
+        android:layout_alignTop="@+id/textViewDescription" />
 
     <TextView
         android:layout_width="wrap_content"
